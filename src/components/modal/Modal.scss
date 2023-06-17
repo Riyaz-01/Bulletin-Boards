@@ -1,0 +1,104 @@
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.699);
+	z-index: 9999;
+
+	> .modal-content {
+		background-color: white;
+		padding: 21px 26px;
+		box-shadow: 0px 5px 10px rgba(0, 46, 57, 0.15);
+		border-radius: 8px;
+		min-width: 500px;
+		min-height: 300px;
+
+		> .modal-title {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 24px;
+
+			> .modal-title-text {
+				h1 {
+					font-weight: 700;
+					font-size: 20px;
+				}
+			}
+
+			> button {
+				background-color: white;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				filter: hue-rotate(9);
+			}
+		}
+	}
+}
+.modal-content {
+	hr {
+		margin-top: 32px;
+		border-color: #ebebeb;
+		opacity: 0.2;
+	}
+	label {
+		color: #393939;
+		font-weight: 600;
+		font-size: 16px;
+		margin-bottom: 8px;
+		display: block;
+		margin-top: 32px;
+	}
+	.modal-input {
+		font-size: 16px;
+		border: none;
+		padding: 8px 12px;
+		width: 100%;
+		border: 1px solid #ebebeb;
+		border-radius: 8px;
+
+		&::placeholder {
+			color: #b0b0b0;
+		}
+	}
+	h2 {
+		font-weight: 700;
+		font-size: 20px;
+		margin-top: 40px;
+	}
+	p {
+		margin-bottom: 16px;
+	}
+	.colors {
+		display: flex;
+		gap: 8px;
+
+		.color {
+			width: 24px;
+			height: 24px;
+
+			border-radius: 50%;
+			border: none;
+			cursor: pointer;
+
+			&:hover {
+				border: 1.5px solid rgba(0, 0, 0, 0.334);
+			}
+
+			&.selected {
+				border: 1.5px solid rgba(0, 0, 0, 0.334);
+			}
+		}
+	}
+
+	.modal-button {
+		float: right;
+		margin-top: 60px;
+	}
+}

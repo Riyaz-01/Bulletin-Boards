@@ -1,0 +1,29 @@
+.image-upload {
+	margin-top: 24px;
+
+	.uploaded-image {
+		height: 160px;
+		width: 100%;
+		object-fit: cover;
+		border-radius: 8px;
+	}
+
+	> button {
+		display: flex;
+		justify-content: center;
+		gap: 14px;
+		background-color: white;
+		border: 1px solid rgba(235, 235, 235, 1);
+		padding: 8px 12px;
+		border-radius: 8px;
+		cursor: pointer;
+		margin-top: 8px;
+
+		width: 100%;
+
+		.button-text {
+			color: rgba(113, 113, 113, 1);
+			font-weight: 600;
+		}
+	}
+}

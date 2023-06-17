@@ -1,0 +1,101 @@
+.post-card {
+	background-color: white;
+	padding: 16px;
+	border-radius: 8px;
+	height: max-content;
+	width: 275px;
+	position: relative;
+
+	.post-title {
+		display: flex;
+		justify-content: space-between;
+
+		gap: 8px;
+
+		.post-title-text {
+			font-weight: 700;
+			font-size: 20px;
+		}
+		.post-actions {
+			display: flex;
+			margin-top: 6px;
+
+			> button {
+				width: 20px;
+				height: 20px;
+				background-color: white;
+				border: none;
+				cursor: pointer;
+			}
+		}
+	}
+	.post-date {
+		font-weight: 500;
+		font-size: 12px;
+		color: #b0b0b0;
+		margin-top: 4px;
+	}
+	.post-image {
+		height: 160px;
+		margin-top: 8px;
+		border-radius: 8px;
+	}
+	.post-description {
+		font-size: 14px;
+		margin: 16px 0;
+		color: #2b2b2b;
+	}
+	hr {
+		opacity: 0.2;
+		margin-bottom: 6px;
+	}
+	.post-likes {
+		font-weight: 500;
+		font-size: 16px;
+		color: #b0b0b0;
+		gap: 6px;
+		display: flex;
+		align-items: center;
+
+		button {
+			background-color: white;
+			border: none;
+			margin-bottom: -4px;
+			cursor: pointer;
+		}
+	}
+	.options {
+		background: #ffffff;
+		border: 1px solid #ebebeb;
+		box-shadow: 0px 5px 10px rgba(0, 46, 57, 0.15);
+		border-radius: 8px;
+
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		right: -70px;
+		top: 50px;
+		z-index: 999;
+		overflow: hidden;
+
+		button {
+			background-color: white;
+			border: none;
+			padding: 13px 18px;
+			display: flex;
+			gap: 9px;
+			cursor: pointer;
+
+			&:hover {
+				filter: brightness(90%);
+			}
+		}
+
+		button:first-child {
+			color: #717171;
+		}
+		button:last-child {
+			color: rgba(211, 56, 82, 1);
+		}
+	}
+}

@@ -1,0 +1,70 @@
+.board {
+	display: flex;
+	border: 1px solid #ebebeb;
+	border-radius: 8px;
+	position: relative;
+	transition: all 100ms ease-in-out;
+	cursor: pointer;
+
+	&:hover {
+		transform: translateY(-6px);
+		z-index: 99;
+	}
+
+	.board-color {
+		height: 80px;
+		width: 80px;
+		border-radius: 8px 0px 0px 8px;
+	}
+	.board-content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 34px;
+		padding: 0 24px;
+		font-size: 14px;
+		min-width: 300px;
+
+		button {
+			border: none;
+			background-color: white;
+			cursor: pointer;
+			width: 10px;
+			z-index: 10;
+		}
+	}
+	.options {
+		background: #ffffff;
+		border: 1px solid #ebebeb;
+		box-shadow: 0px 5px 10px rgba(0, 46, 57, 0.15);
+		border-radius: 8px;
+
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		right: -70px;
+		top: 50px;
+		z-index: 999;
+		overflow: hidden;
+
+		button {
+			background-color: white;
+			border: none;
+			padding: 13px 18px;
+			display: flex;
+			gap: 9px;
+			cursor: pointer;
+
+			&:hover {
+				filter: brightness(90%);
+			}
+		}
+
+		button:first-child {
+			color: #717171;
+		}
+		button:last-child {
+			color: rgba(211, 56, 82, 1);
+		}
+	}
+}

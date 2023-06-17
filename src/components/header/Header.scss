@@ -1,0 +1,39 @@
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	border-bottom: 1px solid #ebebeb;
+	padding: 20px 70px;
+
+	& > .title {
+		display: flex;
+		gap: 6px;
+		align-items: center;
+		position: relative;
+
+		.back-button {
+			border: none;
+			background-color: white;
+			position: absolute;
+			left: -20px;
+			top: 8px;
+			cursor: pointer;
+
+			img {
+				height: 16px;
+			}
+		}
+
+		h1 {
+			font-weight: 700;
+			font-size: 18px;
+		}
+	}
+
+	& > .right-section {
+		display: flex;
+		gap: 80px;
+		align-items: center;
+	}
+}

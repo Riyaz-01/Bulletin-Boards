@@ -1,0 +1,26 @@
+.page-container {
+	padding: 40px 70px;
+	height: 100vh;
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 32px;
+
+		> h2 {
+			font-weight: 700;
+			font-size: 32px;
+		}
+
+		> .subtitle {
+			font-size: 14px;
+		}
+	}
+	.content {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 32px;
+		row-gap: 24px;
+	}
+}
