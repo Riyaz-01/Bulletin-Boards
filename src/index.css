@@ -1,5 +1,5 @@
 @font-face {
-	font-family: 'avenir_next_lt_proregular';
+	font-family: 'avenir_next';
 	src: url('./assets/fonts/avenir_next_font-webfont.woff') format('woff2'),
 		url('./assets/fonts/avenir_next_font-webfont.woff2') format('woff');
 	font-weight: normal;
@@ -10,5 +10,5 @@
 	margin: 0;
 	box-sizing: border-box;
 
-	font-family: avenir;
+	font-family: 'avenir_next';
 }
