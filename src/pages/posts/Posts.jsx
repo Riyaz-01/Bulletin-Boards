@@ -24,7 +24,7 @@ import { Slide } from 'react-toastify';
 const Posts = ({ boards = [], setBoards = () => {} }) => {
 	const { id } = useParams();
 
-	const [posts, setPosts] = useState(boards[id].posts);
+	const [posts, setPosts] = useState([]);
 	const [showBookmarks, setShowBookmarks] = useState(false);
 	const [query, setQuery] = useState('');
 	const [openModal, setOpenModal] = useState(false);
@@ -86,10 +86,14 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 		localStorage.setItem('boards', JSON.stringify(newBoards));
 	};
 
+	useEffect(() => {
+		setPosts(boards[id]?.posts);
+	}, [boards]);
+
 	return (
 		<>
 			<Header
-				title={showBookmarks ? 'My Bookmarks' : boards[id].title}
+				title={showBookmarks ? 'My Bookmarks' : boards[id]?.title}
 				showBackButton={true}
 				rightSection={
 					<>
@@ -109,12 +113,12 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 			/>
 			<PageContainer
 				title='Your posts'
-				background={boards[id].color}
+				background={boards[id]?.color}
 				titleRightSection={
 					<Button onClick={() => setOpenModal(true)}>Create new post</Button>
 				}
 			>
-				{posts.length > 0 ? (
+				{posts?.length > 0 ? (
 					posts.map((post, index) => {
 						if (showPost(post))
 							return (
