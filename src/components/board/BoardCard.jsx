@@ -43,7 +43,8 @@ const BoardCard = ({
 			{showOptions && (
 				<div className='options' ref={optionsRef}>
 					<button
-						onClick={() => {
+						onClick={(e) => {
+							e.stopPropagation();
 							onEdit();
 							setShowOptions(false);
 						}}
@@ -52,7 +53,8 @@ const BoardCard = ({
 						Edit
 					</button>
 					<button
-						onClick={() => {
+						onClick={(e) => {
+							e.stopPropagation();
 							onDelete();
 							setShowOptions(false);
 						}}
