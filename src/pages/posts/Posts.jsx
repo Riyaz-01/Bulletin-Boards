@@ -24,7 +24,7 @@ import { Slide } from 'react-toastify';
 const Posts = ({ boards = [], setBoards = () => {} }) => {
 	const { id } = useParams();
 
-	const [posts, setPosts] = useState();
+	const [posts, setPosts] = useState(boards[id].posts);
 	const [showBookmarks, setShowBookmarks] = useState(false);
 	const [query, setQuery] = useState('');
 	const [openModal, setOpenModal] = useState(false);
