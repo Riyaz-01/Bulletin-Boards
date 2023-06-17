@@ -89,7 +89,7 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 	return (
 		<>
 			<Header
-				title={boards[id].title}
+				title={showBookmarks ? 'My Bookmarks' : boards[id].title}
 				showBackButton={true}
 				rightSection={
 					<>
