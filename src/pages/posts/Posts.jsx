@@ -32,6 +32,7 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [editIndex, setEditIndex] = useState(-1);
 	const { ToastContainer, successToast } = useCustomToast();
+	const [showEmtpyState, setShowEmptyState] = useState(false);
 
 	const showPost = (post = {}) => {
 		if (
@@ -104,6 +105,24 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 		localStorage.setItem('boards', JSON.stringify(newBoards));
 	};
 
+	const checkEmpty = () => {
+		if (posts.length == 0) {
+			setShowEmptyState(true);
+			return;
+		}
+		for (let i = 0; i < posts.length; ++i) {
+			if (showPost(posts[i])) {
+				setShowEmptyState(false);
+				return;
+			}
+		}
+		setShowEmptyState(true);
+	};
+
+	useEffect(() => {
+		checkEmpty();
+	}, [query]);
+
 	useEffect(() => {
 		setPosts(boards[id]?.posts);
 	}, [boards]);
@@ -143,7 +162,7 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 							{...provided.droppableProps}
 							ref={provided.innerRef}
 						>
-							{posts?.length > 0 ? (
+							{!showEmtpyState ? (
 								posts.map((post, index) => {
 									if (showPost(post))
 										return (
