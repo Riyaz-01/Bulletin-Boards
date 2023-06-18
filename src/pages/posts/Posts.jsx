@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Posts.scss';
 
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 // assets
 import bookmarkedIcon from '../../assets/bookmarked.svg';
 import bookmarkIcon from '../../assets/bookmark.svg';
@@ -86,6 +88,19 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 		localStorage.setItem('boards', JSON.stringify(newBoards));
 	};
 
+	const handleDragEnd = (result) => {
+		// Don't reorder if fillter is on  or drag is off location
+		if (!result.destination) {
+			return;
+		}
+
+		const newItems = Array.from(posts);
+		const [reorderedItem] = newItems.splice(result.source.index, 1);
+		newItems.splice(result.destination.index, 0, reorderedItem);
+
+		setPosts(newItems);
+	};
+
 	useEffect(() => {
 		setPosts(boards[id]?.posts);
 	}, [boards]);
@@ -111,31 +126,52 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 					</>
 				}
 			/>
-			<PageContainer
-				title='Your posts'
-				background={boards[id]?.color}
-				titleRightSection={
-					<Button onClick={() => setOpenModal(true)}>Create new post</Button>
-				}
-			>
-				{posts?.length > 0 ? (
-					posts.map((post, index) => {
-						if (showPost(post))
-							return (
-								<PostCard
-									post={post}
-									key={post.title}
-									onBookmark={() => bookmarkItem(index)}
-									onLike={() => likeItem(index)}
-									onEdit={() => editItem(index)}
-									onDelete={() => deleteItem(post)}
-								/>
-							);
-					})
-				) : (
-					<EmptyState type='post' />
-				)}
-			</PageContainer>
+			<DragDropContext onDragEnd={handleDragEnd}>
+				<Droppable droppableId='droppable' direction='horizontal'>
+					{(provided, snapshot) => (
+						<PageContainer
+							title='Your posts'
+							background={boards[id]?.color}
+							titleRightSection={
+								<Button onClick={() => setOpenModal(true)}>
+									Create new post
+								</Button>
+							}
+							{...provided.droppableProps}
+							ref={provided.innerRef}
+						>
+							{posts?.length > 0 ? (
+								posts.map((post, index) => {
+									if (showPost(post))
+										return (
+											<Draggable
+												key={post.date.toString()}
+												draggableId={post.date.toString()}
+												index={index}
+											>
+												{(provided, snapshot) => (
+													<PostCard
+														post={post}
+														onBookmark={() => bookmarkItem(index)}
+														onLike={() => likeItem(index)}
+														onEdit={() => editItem(index)}
+														onDelete={() => deleteItem(post)}
+														ref={provided.innerRef}
+														{...provided.draggableProps}
+														{...provided.dragHandleProps}
+													/>
+												)}
+											</Draggable>
+										);
+								})
+							) : (
+								<EmptyState type='post' />
+							)}
+							{provided.placeholder}
+						</PageContainer>
+					)}
+				</Droppable>
+			</DragDropContext>
 			<Modal
 				isOpen={openModal}
 				onClose={closeModal}
