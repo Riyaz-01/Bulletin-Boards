@@ -84,7 +84,7 @@ const Boards = ({ boards = [], setBoards = () => {} }) => {
 
 	useEffect(() => {
 		checkEmpty();
-	}, [query]);
+	}, [query, boards]);
 
 	return (
 		<>

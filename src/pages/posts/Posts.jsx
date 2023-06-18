@@ -121,7 +121,7 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 
 	useEffect(() => {
 		checkEmpty();
-	}, [query]);
+	}, [query, boards, posts]);
 
 	useEffect(() => {
 		setPosts(boards[id]?.posts);
