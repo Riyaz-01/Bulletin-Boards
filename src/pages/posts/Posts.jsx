@@ -148,8 +148,8 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 									if (showPost(post))
 										return (
 											<Draggable
-												key={post.date.toString()}
-												draggableId={post.date.toString()}
+												key={post.date.toString() + post.title + index}
+												draggableId={post.date.toString() + post.title + index}
 												index={index}
 											>
 												{(provided, snapshot) => (
