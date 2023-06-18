@@ -133,7 +133,7 @@ const ModalContent = ({
 		const data = {
 			color: selectedColor,
 			title: title,
-			posts: [],
+			posts: editIndex === -1 ? [] : boards[editIndex]?.posts,
 		};
 		let newBoards = boards;
 		if (editIndex === -1) newBoards = [...newBoards, data];
