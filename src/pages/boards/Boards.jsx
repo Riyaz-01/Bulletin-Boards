@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import './Boards.scss';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // helpers
 import { useNavigate } from 'react-router-dom';
@@ -51,6 +52,20 @@ const Boards = ({ boards = [], setBoards = () => {} }) => {
 		navigate(`/posts/${index}`);
 	};
 
+	const handleDragEnd = (result) => {
+		// Don't reorder if fillter is on  or drag is off location
+		if (!result.destination) {
+			return;
+		}
+
+		const newItems = Array.from(boards);
+		const [reorderedItem] = newItems.splice(result.source.index, 1);
+		newItems.splice(result.destination.index, 0, reorderedItem);
+
+		setBoards(newItems);
+		localStorage.setItem('boards', JSON.stringify(newItems));
+	};
+
 	return (
 		<>
 			<Modal
@@ -75,25 +90,46 @@ const Boards = ({ boards = [], setBoards = () => {} }) => {
 					</>
 				}
 			/>
-			<PageContainer title='My boards'>
-				{boards.length > 0 ? (
-					boards.map((board, index) => {
-						if (showBoard(board.title))
-							return (
-								<BoardCard
-									board={board}
-									onDelete={() => deleteItem(board)}
-									onEdit={() => editItem(index)}
-									index={index}
-									key={board.title}
-									onClick={() => openPosts(index)}
-								/>
-							);
-					})
-				) : (
-					<EmptyState type='board' />
-				)}
-			</PageContainer>
+			<DragDropContext onDragEnd={handleDragEnd}>
+				<Droppable droppableId='droppable' direction='horizontal'>
+					{(provided, snapshot) => (
+						<PageContainer
+							title='My boards'
+							{...provided.droppableProps}
+							ref={provided.innerRef}
+						>
+							{boards.length > 0 ? (
+								boards.map((board, index) => {
+									if (showBoard(board.title))
+										return (
+											<Draggable
+												key={board.title + index}
+												draggableId={board.title + index}
+												index={index}
+											>
+												{(provided, snapshot) => (
+													<BoardCard
+														board={board}
+														onDelete={() => deleteItem(board)}
+														onEdit={() => editItem(index)}
+														index={index}
+														key={board.title}
+														onClick={() => openPosts(index)}
+														ref={provided.innerRef}
+														{...provided.draggableProps}
+														{...provided.dragHandleProps}
+													/>
+												)}
+											</Draggable>
+										);
+								})
+							) : (
+								<EmptyState type='board' />
+							)}
+						</PageContainer>
+					)}
+				</Droppable>
+			</DragDropContext>
 			<ToastContainer
 				autoClose={3000}
 				newestOnTop={false}
