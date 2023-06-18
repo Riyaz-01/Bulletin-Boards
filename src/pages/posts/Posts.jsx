@@ -99,6 +99,9 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 		newItems.splice(result.destination.index, 0, reorderedItem);
 
 		setPosts(newItems);
+		let newBoards = boards;
+		newBoards[id].posts = newItems;
+		localStorage.setItem('boards', JSON.stringify(newBoards));
 	};
 
 	useEffect(() => {
