@@ -102,7 +102,8 @@ const Boards = ({ boards = [], setBoards = () => {} }) => {
 				/>
 			</Modal>
 			<Header
-				showLogo={true}
+				showLogo={false}
+				title='My Board'
 				rightSection={
 					<>
 						<Search query={query} onChange={(e) => setQuery(e.target.value)} />

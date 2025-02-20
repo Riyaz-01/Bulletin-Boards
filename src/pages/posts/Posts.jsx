@@ -212,7 +212,7 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 				/>
 			</Modal>
 			<ToastContainer
-				autoClose={3000}
+				autoClose={1000}
 				newestOnTop={false}
 				closeOnClick
 				rtl={false}

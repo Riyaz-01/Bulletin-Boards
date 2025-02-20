@@ -4,14 +4,12 @@ import './Header.scss';
 // assets
 import logo from '/logo.svg';
 import back from '../../assets/back.svg';
-import toddle from '../../assets/toddle.svg';
 import { useNavigate } from 'react-router-dom';
 
 const Header = ({
 	title = '',
 	rightSection = <></>,
 	showBackButton = false,
-	showLogo = false,
 }) => {
 	const navigate = useNavigate();
 	const goBack = () => {
@@ -27,7 +25,7 @@ const Header = ({
 					</button>
 				)}
 				<img src={logo} alt='logo' />
-				{showLogo ? <img src={toddle} alt='toddle' /> : <h1>{title}</h1>}
+				<h1>{title}</h1>
 			</div>
 			<div className='right-section'>{rightSection}</div>
 		</header>
