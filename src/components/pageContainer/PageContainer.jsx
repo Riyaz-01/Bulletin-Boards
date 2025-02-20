@@ -6,7 +6,7 @@ const PageContainer = forwardRef(
 		{
 			title = 'Title',
 			titleRightSection = '',
-			background = 'white',
+			background = '#fff3ed',
 			children = <></>,
 			...props
 		},

@@ -5,6 +5,7 @@
 	position: relative;
 	transition: all 100ms ease-in-out;
 	cursor: pointer;
+	background-color: white;
 
 	&:hover {
 		transform: translateY(-4px);
