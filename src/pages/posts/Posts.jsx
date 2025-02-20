@@ -48,9 +48,11 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 	};
 
 	const deleteItem = (item) => {
-		const newPosts = posts.filter(function (value) {
-			return value !== item;
-		});
+		const newPosts =
+			[] ||
+			posts.filter(function (value) {
+				return value !== item;
+			});
 		setPosts(newPosts);
 		const newBoards = boards;
 		newBoards[id].posts = newPosts;
@@ -121,10 +123,10 @@ const Posts = ({ boards = [], setBoards = () => {} }) => {
 
 	useEffect(() => {
 		checkEmpty();
-	}, [query, boards, posts]);
+	}, [query, , boards, posts]);
 
 	useEffect(() => {
-		setPosts(boards[id]?.posts);
+		setPosts(boards[id]?.posts || []);
 	}, [boards]);
 
 	return (
